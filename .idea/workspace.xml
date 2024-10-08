@@ -5,25 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e524d076-2c32-4e3a-aee6-5d179284dc49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker_PGBouncer_HAProxy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/example.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/haproxy/Dockerfile.bk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/haproxy/haproxy.cfg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose-template.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/data/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/etc/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/etc/alert_rules.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/prometheus/etc/prometheus.yml.template" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setup_pgbouncer_instances.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.env" beforeDir="false" afterPath="$PROJECT_DIR$/example.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haproxy/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/haproxy/haproxy.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/haproxy-template.cfg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "JohnRTurner"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/JohnRTurner/docker_PGBouncer_HAProxy.git",
+    "accountId": "08e839eb-7a77-4ba8-a299-c0ffa1ecfe66"
+  }
+}]]></component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -33,24 +55,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker-compose.yaml.haproxy: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.pgbouncer1: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml.pgbouncer3: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yaml: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yaml.haproxy: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.pgbouncer1: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.pgbouncer3: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.pgbouncer_exporter1: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.pgbouncer_exporter2: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.pgbouncer_exporter3: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.pgbouncer_exporter: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml.prom: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yaml: Compose Deployment.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jrt13/IdeaProjects/docker_PGBouncer_HAProxy/haproxy",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Docker.docker-compose.yaml.haproxy: Compose Deployment">
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jrt13\IdeaProjects\docker_PGBouncer_HAProxy\haproxy" />
+      <recent name="C:\Users\jrt13\IdeaProjects\docker_PGBouncer_HAProxy" />
+      <recent name="C:\Users\jrt13\IdeaProjects\docker_PGBouncer_HAProxy\prometheus" />
+      <recent name="C:\Users\jrt13\IdeaProjects\docker_PGBouncer_HAProxy\prometheus\etc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jrt13\IdeaProjects\docker_PGBouncer_HAProxy\prometheus\etc" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -65,12 +105,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.haproxy: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.pgbouncer_exporter1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="haproxy" />
+              <option value="pgbouncer_exporter1" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -78,12 +118,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.pgbouncer1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.pgbouncer_exporter2: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="pgbouncer1" />
+              <option value="pgbouncer_exporter2" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -91,12 +131,25 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yaml.pgbouncer3: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yaml.pgbouncer_exporter3: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="pgbouncer3" />
+              <option value="pgbouncer_exporter3" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yaml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yaml.prom: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="prom" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
@@ -106,10 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yaml.haproxy: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.pgbouncer1: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.pgbouncer3: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.prom: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.pgbouncer_exporter3: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.pgbouncer_exporter2: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yaml.pgbouncer_exporter1: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -133,6 +187,7 @@
       <workItem from="1727056449544" duration="36367000" />
       <workItem from="1727930428504" duration="576000" />
       <workItem from="1727963775528" duration="602000" />
+      <workItem from="1727967899556" duration="41382000" />
     </task>
     <servers />
   </component>
@@ -141,5 +196,8 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
 </project>

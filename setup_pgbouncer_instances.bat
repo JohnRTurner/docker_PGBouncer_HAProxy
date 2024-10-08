@@ -1,0 +1,1 @@
+bash setup_pgbouncer_instances.sh

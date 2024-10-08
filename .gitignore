@@ -92,3 +92,9 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 .env
+/prometheus/data/
+!/prometheus/data/README.md
+#ignore as it is now a generated file
+/prometheus/etc/prometheus.yml
+#/docker-compose.yaml
+#/haproxy/haproxy.cfg

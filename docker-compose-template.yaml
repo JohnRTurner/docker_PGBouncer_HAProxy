@@ -1,0 +1,59 @@
+x-logging: &default_logging
+  driver: "json-file"
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-environment: &default_environment
+  TZ: "${TZ}"
+  DB_HOST: "${DB_HOST}"
+  DB_PORT: "${DB_PORT}"
+  DB_USER: "${DB_USER}"
+  DB_PASSWORD: "${DB_PASSWORD}"
+  ADMIN_USERS: "${DB_USER}"
+  STATS_USERS: "${DB_USER}"
+  POOL_MODE: "${POOL_MODE}"
+  MAX_CLIENT_CONN: "${MAX_CLIENT_CONN}"
+  DEFAULT_POOL_SIZE: "${DEFAULT_POOL_SIZE}"
+  MAX_DB_CONNECTIONS: "${MAX_DB_CONNECTIONS}" # Only included in pgbouncer1
+
+x-healthcheck: &default_healthcheck
+  test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
+
+services:
+  haproxy:
+    image: haproxytech/haproxy-alpine:latest
+    container_name: haproxy
+    hostname: haproxy
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+    logging: *default_logging
+    ports:
+      - "6432:6432"
+      - "8404:8404"
+      #- "8405:8405"
+
+  prom:
+    image: prom/prometheus:latest
+    container_name: prom
+    hostname: prom
+    user: 1000:1000
+    restart: always
+    environment:
+      TZ: America/New_York
+      THANOS_REMOTE_WRITE_URL: ${THANOS_REMOTE_WRITE_URL}
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-admin-api'
+      - '--log.level=debug'
+      - '--web.enable-remote-write-receiver'
+    logging: *default_logging
+    ports:
+      - "9999:9090"
+    # extra_hosts not needed for windows/mac
+    # extra_hosts:
+    #  - "host.docker.internal:${HOST_IP}"
+    volumes:
+      - ./prometheus/etc:/etc/prometheus
+      - ./prometheus/data:/prometheus/data
+

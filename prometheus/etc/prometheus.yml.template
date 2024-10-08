@@ -1,0 +1,43 @@
+global:
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  evaluation_interval: 15s
+alerting:
+  #alertmanagers:
+  #  - static_configs:
+  #      - targets: ["alertmanager:9093"]
+rule_files:
+  - /etc/prometheus/alert_rules.yml
+scrape_configs:
+  # https://grafana.com/grafana/dashboards/3662-prometheus-2-0-overview/ maybe a prebuilt one as well...  3662
+  - job_name: prometheus
+    honor_timestamps: true
+    metrics_path: /metrics
+    scheme: http
+    static_configs:
+      - targets:
+          - localhost:9090
+    relabel_configs:
+      - source_labels: [ __address__ ]
+        target_label: instance
+        replacement: "pgbhap-prometheus"
+  # https://grafana.com/grafana/dashboards/12693-haproxy-2-full/  12693
+  - job_name: load_balancer
+    metrics_path: /metrics
+    static_configs:
+      - targets: [ 'haproxy:8405' ]
+    relabel_configs:
+      - source_labels: [ __address__ ]
+        target_label: instance
+        replacement: "pgbhap-haproxy"
+  # https://grafana.com/grafana/dashboards/14022-pgbouncer/ 14022
+  - job_name: pgbouncer
+    metrics_path: /metrics
+    static_configs:
+      - targets: [${EXPORTERS}]
+    relabel_configs:
+      - source_labels: [ __address__ ]
+        target_label: hostname
+        replacement: 'pgbhap-pgbouncer'
+remote_write:
+  - url: ${THANOS_REMOTE_WRITE_URL}
