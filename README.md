@@ -1,17 +1,16 @@
 # Docker-based PgBouncer, HAProxy, and Prometheus Setup
 
-This project sets up a Docker-based environment featuring  X PgBouncer instances with exporters, load balancing using HAProxy, and monitoring with Prometheus.  
-This 
+This project sets up a Docker-based environment featuring variable number of PgBouncer instances with exporters, load balancing using HAProxy, and monitoring with Prometheus.  
 
 ## Table of Contents
 
 - [Initial Setup](#initial-setup)
-- [Environment Variables](#environment-variables)
 - [Configuration Files](#configuration-files)
     - [HAProxy Configuration](#haproxy-configuration)
     - [Prometheus Configuration](#prometheus-configuration)
     - [Docker Compose Configuration](#docker-compose-configuration)
 - [Usage](#usage)
+- [About the Docker](#about-the-dockers)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -51,15 +50,17 @@ This
      4. Select the Prometheus datasource(use the Thanos database from above).
      5. Click the import button to load the graph.
 
-## Environment Variables
 
-Example configuration file is in example.env.  
+## Configuration Files
+
+### Environment Variables `.env`
+
+Example configuration file is in example.env.
 
 The file .env can be quickly created by copying from example.env.
 
-Please ensure to update these variables according to your environment.
+Please ensure to update these variables according to your requirements.
 
-## Configuration Files
 
 ### HAProxy Configuration
 
@@ -109,6 +110,16 @@ Note: Make change to `docker-compose-template.yml` to be permanent.
      * Use the database username and password used to create the pgpool.
 
 Prometheus will scrape metrics from the PgBouncer exporter endpoints running on the designated port numbers.
+
+## About the Dockers:
+
+* [edoburu/pgbouncer](https://github.com/edoburu/docker-pgbouncer) is used to run pgbouncer, a single threaded connection pool.  We use multiple pgbouncers to utilize parallel operations.
+
+* [haproxytech/haproxy-alpine](https://github.com/haproxytech/haproxy-docker-alpine/tree/main) to load balance between the HAProxy servers.
+
+* [prometheuscommunity/pgbouncer-exporter](https://github.com/prometheus-community/pgbouncer_exporter) enables collection of Prometheus statistics for PGBouncer.
+
+* [prom/prometheus:latest](https://github.com/prometheus/prometheus) pulls data from the pgbouncer-exporter and directly from HAProxy.  It forwards it to Thanos which is used by Grafana to view metrics.
 
 
 ## Contributing
