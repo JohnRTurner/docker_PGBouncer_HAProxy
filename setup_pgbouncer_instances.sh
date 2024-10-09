@@ -13,7 +13,7 @@ EXPORTER_BASE_PORT=9127
 pgbouncers=""
 export_targets=""
 
-for i in $(seq 1 $NUM_INSTANCES)
+for i in $(seq 1 "$NUM_INSTANCES")
 do
   pgbouncer_port=$((PGBOUNCER_BASE_PORT + i - 1))
   exporter_port=$((EXPORTER_BASE_PORT + i - 1))
@@ -36,7 +36,7 @@ do
     container_name: pgbouncer_exporter$i
     hostname: pgbouncer_exporter$i
     environment:
-      PGBOUNCER_EXPORTER_CONNECTION_STRING: \"postgres://$(echo -n ${DB_USER}):$(echo -n ${DB_PASSWORD})@pgbouncer$i:5432/pgbouncer?sslmode=disable\"
+      PGBOUNCER_EXPORTER_CONNECTION_STRING: \"postgres://$(echo -n "${DB_USER}"):$(echo -n "${DB_PASSWORD}")@pgbouncer$i:5432/pgbouncer?sslmode=disable\"
     logging: *default_logging
     depends_on:
       - pgbouncer$i
@@ -53,7 +53,7 @@ echo "$pgbouncers" >> docker-compose.yaml
 
 # Build haproxy.cfg
 cp haproxy/haproxy-template.cfg haproxy/haproxy.cfg
-for i in $(seq 1 $NUM_INSTANCES)
+for i in $(seq 1 "$NUM_INSTANCES")
 do
   echo "    server pgbouncer$i pgbouncer$i:5432 check maxconn 0" >> haproxy/haproxy.cfg
 done

@@ -1,3 +1,4 @@
+#file: noinspection YAMLUnusedAnchor,YAMLUnusedAnchor
 x-logging: &default_logging
   driver: "json-file"
   options:

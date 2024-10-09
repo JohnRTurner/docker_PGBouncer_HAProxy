@@ -1,4 +1,4 @@
-# Docker Compose Sample for PgBouncer, HAProxy, and Prometheus Setup
+# Docker Compose for Multiple PgBouncers with HAProxy and Prometheus Setup
 
 This project sets up a Docker-based environment featuring variable number of PgBouncer instances with exporters, load balancing using HAProxy, and monitoring with Prometheus.  
 
@@ -44,8 +44,8 @@ This project sets up a Docker-based environment featuring variable number of PgB
 
 1. **Clone the Repository:**
     ```sh
-    git clone https://github.com/yourusername/yourproject.git
-    cd yourproject
+    git clone https://github.com/JohnRTurner/docker_PGBouncer_HAProxy.git
+    cd docker_PGBouncer_HAProxy
     ```
 
 2. **Copy and Edit the Example Environment File:**
@@ -220,13 +220,11 @@ Prometheus will scrape metrics from the PgBouncer exporter endpoints running on 
 
 ## License
 
-Distributed under the MIT License. See `LICENSE.md` for more information.
+Distributed under the MIT License. See [LICENSE.md](LICENSE.md) for more information.
 
 ## Contact
 
-John Turner - [jrt13a@yahoo.com](mailto:jrt13a@yahoo.com)
-
-Project Link: [https://github.com/JohnRTurner/docker_PGBouncer_HAProxy](https://github.com/JohnRTurner/docker_PGBouncer_HAProxy) 
+Project Link: [GitHub Link][GitHubLink] 
 
 ```plaintext
                                                                                           
@@ -261,3 +259,5 @@ Project Link: [https://github.com/JohnRTurner/docker_PGBouncer_HAProxy](https://
                                                                                           
 
 ```
+
+[GitHubLink]: https://github.com/JohnRTurner/docker_PGBouncer_HAProxy
