@@ -1,14 +1,15 @@
 # Docker-based PgBouncer, HAProxy, and Prometheus Setup
 
-This project sets up a Docker-based environment featuring PgBouncer instances with exporters, load balancing using HAProxy, and monitoring with Prometheus.
+This project sets up a Docker-based environment featuring  X PgBouncer instances with exporters, load balancing using HAProxy, and monitoring with Prometheus.  
+This 
 
 ## Table of Contents
 
+- [Initial Setup](#initial-setup)
 - [Environment Variables](#environment-variables)
 - [Configuration Files](#configuration-files)
     - [HAProxy Configuration](#haproxy-configuration)
     - [Prometheus Configuration](#prometheus-configuration)
-    - [Prometheus Entrypoint Script](#prometheus-entrypoint-script)
     - [Docker Compose Configuration](#docker-compose-configuration)
 - [Usage](#usage)
 - [Contributing](#contributing)
@@ -16,22 +17,39 @@ This project sets up a Docker-based environment featuring PgBouncer instances wi
 
 ## Initial Setup
 
-1. **Copy the example env file and edit it**:
+1. **Prerequisites**:
+   * Aiven Postgres database - will need connection parameters and credentials for step 2.
+   * Aiven Thanos database - will need connection parameters and credentials for step 2.
+     * Set the Postgres database to send metrics to Thanos
+   * Aiven Grafana 
+     * Setup to read from Thanos
+     * Validate that dashboard works for Postgres database.
+
+2. **Copy the example env file and edit it**:
    ```sh
    cp example.env .env
    ```
-   Update the `.env` file with the necessary environment variables, including the number of PgBouncer instances.
+   
+3. Update the `.env` file with the desired environment variables, including the number of PgBouncer instances.
 
-2. **Run the setup script**:
+4. **Run the setup script**:
    ```sh
    ./setup_pgbouncer_instance.sh
    ```
    This will configure the environment based on the number of PgBouncer instances specified in the `.env` file.
 
-3. **Start the Docker Compose services**:
+5. **Start the Docker Compose services**:
    ```sh
    docker-compose up -d
    ```
+6. **Add the Grafana Dashboards**:
+   * Log into Grafana
+   * For each of these dashboards (`12693`, `14022`) do the following:
+     1. Press hamburg and open dashboards
+     2. Click New Import
+     3. Add the Dashboard ID and click the Load button.
+     4. Select the Prometheus datasource(use the Thanos database from above).
+     5. Click the import button to load the graph.
 
 ## Environment Variables
 
@@ -65,23 +83,30 @@ Note: Make change to `docker-compose-template.yml` to be permanent.
 
 ## Usage
 
-1. **Run the setup script to configure the environment with the desired number of PgBouncer instances**:
-   ```sh
-   ./setup_pgbouncer_instance.sh
-   ```
-
-2. **Start the Docker Compose services**:
+1. **Follow the Steps from the Initial Setup.**
+   
+2. **Start the Docker Compose services, if they are not running**:
    ```sh
    docker-compose up -d
    ```
 
-3. **Access Prometheus**:
+3. **For Debugging can Directly Access Prometheus**:
 
-   Prometheus will be available at [http://localhost:9999](http://localhost:9999).
+   Prometheus will be available at `http://yourdockerhost:9999`...  Substitute your docker hostname.
 
-4. **Access HAProxy**:
+4. **When properly configure, the dashboards are available in Grafana**
 
-   HAProxy will be available at [http://localhost:6432](http://localhost:6432).
+5. **The HAProxy statistics report can also be used for debugging**:
+
+   HAProxy statistics report will be available at `http://yourdockerhost:8404`...  Substitute your docker hostname.
+ 
+   Note: The username and password will be whatever is in haproxy.cfg; change as required.
+
+6. **Connect to the database via PGBouncer through the HAProxy**:
+   * For your connection string: 
+     * Set the host to the docker hostname.
+     * Set the port to 6432 (The port setup by HAProxy.)
+     * Use the database username and password used to create the pgpool.
 
 Prometheus will scrape metrics from the PgBouncer exporter endpoints running on the designated port numbers.
 

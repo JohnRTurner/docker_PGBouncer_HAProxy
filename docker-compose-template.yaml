@@ -15,7 +15,7 @@ x-environment: &default_environment
   POOL_MODE: "${POOL_MODE}"
   MAX_CLIENT_CONN: "${MAX_CLIENT_CONN}"
   DEFAULT_POOL_SIZE: "${DEFAULT_POOL_SIZE}"
-  MAX_DB_CONNECTIONS: "${MAX_DB_CONNECTIONS}" # Only included in pgbouncer1
+  MAX_DB_CONNECTIONS: "${MAX_DB_CONNECTIONS}"
 
 x-healthcheck: &default_healthcheck
   test: [ 'CMD', 'pg_isready', '-h', 'localhost' ]
@@ -41,7 +41,6 @@ services:
     restart: always
     environment:
       TZ: America/New_York
-      THANOS_REMOTE_WRITE_URL: ${THANOS_REMOTE_WRITE_URL}
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--web.enable-admin-api'

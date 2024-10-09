@@ -4,20 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e524d076-2c32-4e3a-aee6-5d179284dc49" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose-template.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prometheus/data/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prometheus/etc/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prometheus/etc/alert_rules.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prometheus/etc/prometheus.yml.template" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setup_pgbouncer_instances.sh" afterDir="false" />
+    <list default="true" id="e524d076-2c32-4e3a-aee6-5d179284dc49" name="Changes" comment="Remove Docker and HAProxy configurations&#10;&#10;Deleted unused `docker-compose.yaml` and `haproxy` Dockerfile. Added Prometheus configuration and templates for dynamic service setup, created new environment variables, and updated README.">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose-template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose-template.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example.env" beforeDir="false" afterPath="$PROJECT_DIR$/example.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/haproxy/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/haproxy/haproxy.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/haproxy-template.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/haproxy/haproxy-template.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/haproxy/haproxy-template.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prometheus/etc/prometheus.yml.template" beforeDir="false" afterPath="$PROJECT_DIR$/prometheus/etc/prometheus.yml.template" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup_pgbouncer_instances.sh" beforeDir="false" afterPath="$PROJECT_DIR$/setup_pgbouncer_instances.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +52,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Batch.setup_pgbouncer_instances.executor": "Run",
     "Docker.docker-compose.yaml.haproxy: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.pgbouncer1: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yaml.pgbouncer3: Compose Deployment.executor": "Run",
@@ -91,6 +87,17 @@
     </key>
   </component>
   <component name="RunManager" selected="Docker.docker-compose.yaml: Compose Deployment">
+    <configuration name="setup_pgbouncer_instances" type="BatchConfigurationType" factoryName="Batch" temporary="true">
+      <module name="docker_PGBouncer_HAProxy" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\jrt13\IdeaProjects\docker_PGBouncer_HAProxy" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="setup_pgbouncer_instances.bat" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
       <deployment type="docker-compose.yml">
         <settings />
@@ -100,19 +107,6 @@
     <configuration name="docker-compose.yaml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
-          <option name="sourceFilePath" value="docker-compose.yaml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yaml.pgbouncer_exporter1: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="pgbouncer_exporter1" />
-            </list>
-          </option>
           <option name="sourceFilePath" value="docker-compose.yaml" />
         </settings>
       </deployment>
@@ -160,10 +154,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Docker.docker-compose.yaml: Compose Deployment" />
+        <item itemvalue="Batch.setup_pgbouncer_instances" />
         <item itemvalue="Docker.docker-compose.yaml.prom: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.pgbouncer_exporter3: Compose Deployment" />
         <item itemvalue="Docker.docker-compose.yaml.pgbouncer_exporter2: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yaml.pgbouncer_exporter1: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -187,8 +181,17 @@
       <workItem from="1727056449544" duration="36367000" />
       <workItem from="1727930428504" duration="576000" />
       <workItem from="1727963775528" duration="602000" />
-      <workItem from="1727967899556" duration="41382000" />
+      <workItem from="1727967899556" duration="51139000" />
     </task>
+    <task id="LOCAL-00001" summary="Remove Docker and HAProxy configurations&#10;&#10;Deleted unused `docker-compose.yaml` and `haproxy` Dockerfile. Added Prometheus configuration and templates for dynamic service setup, created new environment variables, and updated README.">
+      <option name="closed" value="true" />
+      <created>1728405414989</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1728405414989</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,6 +201,8 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.cfg" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="Remove Docker and HAProxy configurations, add Prometheus setup&#10;&#10;Deleted the Docker Compose and HAProxy configurations, and introduced a new Prometheus setup with relevant configurations and setup scripts. Updated the `.gitignore` file to exclude Prometheus data directories and added environment variables for the number of instances." />
+    <MESSAGE value="Remove Docker and HAProxy configurations&#10;&#10;Deleted unused `docker-compose.yaml` and `haproxy` Dockerfile. Added Prometheus configuration and templates for dynamic service setup, created new environment variables, and updated README." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove Docker and HAProxy configurations&#10;&#10;Deleted unused `docker-compose.yaml` and `haproxy` Dockerfile. Added Prometheus configuration and templates for dynamic service setup, created new environment variables, and updated README." />
   </component>
 </project>

@@ -96,5 +96,5 @@ fabric.properties
 !/prometheus/data/README.md
 #ignore as it is now a generated file
 /prometheus/etc/prometheus.yml
-#/docker-compose.yaml
-#/haproxy/haproxy.cfg
+/docker-compose.yaml
+/haproxy/haproxy.cfg
