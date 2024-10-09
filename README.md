@@ -1,4 +1,4 @@
-# Docker-based PgBouncer, HAProxy, and Prometheus Setup
+# Docker Compose Sample for PgBouncer, HAProxy, and Prometheus Setup
 
 This project sets up a Docker-based environment featuring variable number of PgBouncer instances with exporters, load balancing using HAProxy, and monitoring with Prometheus.  
 
@@ -24,24 +24,35 @@ This project sets up a Docker-based environment featuring variable number of PgB
      * Setup to read from Thanos
      * Validate that dashboard works for Postgres database.
 
-2. **Copy the example env file and edit it**:
+2. Prepare the machine for this code.  
+   * The machine must have network access to:
+     * The Aiven Postgres databases
+     * The Aiven Thanos database
+     * The client's that wish to use the PGBouncer for database connection management.
+   * Must have git installed to pull this repo
+   * Must have docker and docker-compose installed
+
+3. Download this git repository to the machine you wish to deploy this on.
+
+4. **Copy the example env file and edit it**:
    ```sh
+   cd docker_PGBouncer_HAProxy
    cp example.env .env
    ```
    
-3. Update the `.env` file with the desired environment variables, including the number of PgBouncer instances.
+5. Update the `.env` file with the desired environment variables, including the number of PgBouncer instances.
 
-4. **Run the setup script**:
+6. **Run the setup script**:
    ```sh
    ./setup_pgbouncer_instance.sh
    ```
    This will configure the environment based on the number of PgBouncer instances specified in the `.env` file.
 
-5. **Start the Docker Compose services**:
+7. **Start the Docker Compose services**:
    ```sh
    docker-compose up -d
    ```
-6. **Add the Grafana Dashboards**:
+8. **Add the Grafana Dashboards**:
    * Log into Grafana
    * For each of these dashboards (`12693`, `14022`) do the following:
      1. Press hamburg and open dashboards
@@ -121,6 +132,81 @@ Prometheus will scrape metrics from the PgBouncer exporter endpoints running on 
 
 * [prom/prometheus:latest](https://github.com/prometheus/prometheus) pulls data from the pgbouncer-exporter and directly from HAProxy.  It forwards it to Thanos which is used by Grafana to view metrics.
 
+## Data Flow
+
+```plaintext
+                            +-------------------+
+                            |     DB Clients    |
+                            +---------+---------+
+                                      |
+                                      |
+                           +----------v-----------+
+                           |       HAProxy        |
+                           +----------+-----------+
+                                      |
+          +---------------------------+-------------------------------+
+          |                           |                               |
+          |                           |                               |
++---------v----------+      +---------v----------+           +---------v----------+
+| PgBouncer Instance |      | PgBouncer Instance |           | PgBouncer Instance |
+|        1           |      |        2           |           |        3           |
++---------+----------+      +---------+----------+           +---------+----------+
+          |                           |                               |
+          +---------------------------+-------------------------------+
+                                      |
+                                      |
+                           +----------v-----------+
+                           |      PostgreSQL      |
+                           +----------+-----------+
+```
+
+## Monitoring Flow
+
+```plaintext
+                           +----------------------+
+                           |       HAProxy        |
+                           +----------+-----------+
+                                      |
+          +---------------------------+-------------------------------+
+          |                           |                               |
+          |                           |                               |
++---------v----------+      +---------v----------+           +---------v----------+
+| PgBouncer Instance |      | PgBouncer Instance |           | PgBouncer Instance |
+|        1           |      |        2           |           |        N           |
++---------+----------+      +---------+----------+           +---------+----------+
+          |                           |                               |
+          |                           |                               |
++---------v----------+      +---------v----------+           +---------v----------+
+| PgBouncer Exporter |      | PgBouncer Exporter |           | PgBouncer Exporter |
+|        1           |      |        2           |           |        N           |
++---------+----------+      +---------+----------+           +---------+----------+
+          |                           |                               |
+          +---------------------------+-------------------------------+
+                                      |
+                                      +-------------------------------+
+                                                                      |
++----------------------+                                   +----------v------------+
+| HAProxy to Prometheus|                                   | PgBouncer Exporters to|
+|                      |                                   |      Prometheus       | 
++---------+------------+                                   +----------+------------+
+          |                                                           |
+          +-----------------------------------------------------------+
+          |                            
++---------v------------+                                   +-----------------------+
+|     Prometheus       |                                   |      PostgreSQL       |
++---------+------------+                                   +----------+------------+
+          |                                                           |
+          +---------------------------+-------------------------------+
+                                      |
+                           +----------v-----------+
+                           |        Thanos        |
+                           +----------+-----------+
+                                      |
+                                      |
+                           +----------v-----------+
+                           |        Grafana       |
+                           +----------------------+
+```
 
 ## Contributing
 
@@ -128,4 +214,4 @@ Please fork the repository and use a feature branch. Pull requests are warmly we
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE file](LICENSE.md) for details.
