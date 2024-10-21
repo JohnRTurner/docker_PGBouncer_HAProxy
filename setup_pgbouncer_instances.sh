@@ -35,6 +35,7 @@ do
     image: prometheuscommunity/pgbouncer-exporter
     container_name: pgbouncer_exporter$i
     hostname: pgbouncer_exporter$i
+    restart: always
     environment:
       PGBOUNCER_EXPORTER_CONNECTION_STRING: \"postgres://$(echo -n "${DB_USER}"):$(echo -n "${DB_PASSWORD}")@pgbouncer$i:5432/pgbouncer?sslmode=disable\"
     logging: *default_logging

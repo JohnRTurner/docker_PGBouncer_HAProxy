@@ -26,6 +26,7 @@ services:
     image: haproxytech/haproxy-alpine:latest
     container_name: haproxy
     hostname: haproxy
+    restart: always
     volumes:
       - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
     logging: *default_logging

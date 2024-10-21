@@ -2,7 +2,22 @@
 <module type="GENERAL_MODULE" version="4">
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01J9PTRHRZP0PWVDFJWZ9SHE3P" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01J9S3JDJCHFCPYGYC2PQF16BR" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01J9V1BYV3VJ28VXKEWDGKE5ZS" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01J9WZ5F8PVXN9Q9PC7K4WF1W5" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01J9YWYZKRYSSAK05KCNAY4CBW" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01JA0TRHRRGCQP3QM63WF6Q41D" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01JA2RJ2H1F56FWSV5JS0BKM1E" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01JA4PBMTM7ZS0SG4EG5JP6BS9" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01JA5AYQJHGEV4A88SKQ947YC2" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01JA5RP8JKSCRSBD804EWADHY5" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01JA5ZHZJJCWS2996HZR2863R0" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/01JA5ZHZW9901BAQD0K6C5SJAY" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/chunks_head" />
+      <excludeFolder url="file://$MODULE_DIR$/prometheus/data/wal" />
+    </content>
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
